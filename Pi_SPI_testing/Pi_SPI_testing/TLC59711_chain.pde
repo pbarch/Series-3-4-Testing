@@ -1,12 +1,12 @@
 class TLC59711_chain {
 
     // number of registers in the chain
-    short chain_len;
+    int chain_len;
 
     // create an array of TLC59711 objects
     ArrayList<TLC59711> chain_link = new ArrayList<TLC59711>();
 
-    TLC59711_chain(short chain_length){
+    TLC59711_chain(int chain_length){
         chain_len = chain_length;
 
         // populate arraylist with devices
@@ -15,21 +15,23 @@ class TLC59711_chain {
         }
     }
 
-}
-
-void write(){
-    for (short n = 0; n < chain_len; n++) {
-        // send settings MSB first, 1 byte at a time
-        spi.transfer(settings >> 24);
-        spi.transfer(byte(settings >> 16));
-        spi.transfer(byte(settings >> 8));
-        spi.transfer(byte(settings));
-
-        // 12 channels per TLC59711
-        for (short c = 11; c >= 0; c--) {
-            // 16 bits per channel, send MSB first
-            spi.transfer(byte(chain_link[n].channel[c] >> 8));
-            spi.transfer(byte(chain_link[c]));
+    void write(){
+        for (int n = 0; n < chain_len; n++) {
+            // send settings MSB first, 1 byte at a time
+            spi.transfer(settings >> 24);
+            spi.transfer(byte(settings >> 16));
+            spi.transfer(byte(settings >> 8));
+            spi.transfer(byte(settings));
+    
+            // 12 channels per TLC59711
+            for (int c = 11; c >= 0; c--) {
+                spi.transfer(byte(chain_link.get(n).channel[c] >> 8));
+                spi.transfer(byte(chain_link.get(n).channel[c]));
+                //// 16 bits per channel, send MSB first
+                //spi.transfer(byte(chain_link[n].channel[c] >> 8));
+                //spi.transfer(byte(chain_link[c]));
+            }
         }
     }
+
 }

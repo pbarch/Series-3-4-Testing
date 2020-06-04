@@ -15,7 +15,7 @@
 
 import processing.io.*;
 SPI spi;
-const long spi_speed = 500000; // Hz 
+int spi_speed = 500000; // Hz 
 
 // static settings sent to every TLC59711
 int settings = 0;
@@ -49,18 +49,31 @@ void setup() {
 
 void draw() {
   
-  output.chain_link[0].set_channel(0, 0);
-  output.chain_link[0].set_channel(1, 30);
-  output.chain_link[0].set_channel(2, 45);
-  output.chain_link[0].set_channel(3, 130);
-  output.chain_link[0].set_channel(4, 255);
-  output.chain_link[0].set_channel(5, 500);
-  output.chain_link[0].set_channel(6, 1023);
-  output.chain_link[0].set_channel(7, 2000);
-  output.chain_link[0].set_channel(8, 10000);
-  output.chain_link[0].set_channel(9, 40000);
-  output.chain_link[0].set_channel(10, 60000);
-  output.chain_link[0].set_channel(11, 65535);
+  //output.chain_link.get(0).set_channel(0, 0);
+  //output.chain_link.get(0).set_channel(1, 30);
+  //output.chain_link.get(0).set_channel(2, 45);
+  //output.chain_link.get(0).set_channel(3, 130);
+  //output.chain_link.get(0).set_channel(4, 255);
+  //output.chain_link.get(0).set_channel(5, 500);
+  //output.chain_link.get(0).set_channel(6, 1023);
+  //output.chain_link.get(0).set_channel(7, 2000);
+  //output.chain_link.get(0).set_channel(8, 10000);
+  //output.chain_link.get(0).set_channel(9, 40000);
+  //output.chain_link.get(0).set_channel(10, 60000);
+  //output.chain_link.get(0).set_channel(11, 65535);
+  
+  output.chain_link.get(0).set_channel(0, 0);
+  output.chain_link.get(0).set_channel(1, 65535);
+  output.chain_link.get(0).set_channel(2, 0);
+  output.chain_link.get(0).set_channel(3, 0);
+  output.chain_link.get(0).set_channel(4, 0);
+  output.chain_link.get(0).set_channel(5, 0);
+  output.chain_link.get(0).set_channel(6, 0);
+  output.chain_link.get(0).set_channel(7, 0);
+  output.chain_link.get(0).set_channel(8, 0);
+  output.chain_link.get(0).set_channel(9, 0);
+  output.chain_link.get(0).set_channel(10, 0);
+  output.chain_link.get(0).set_channel(11, 0);
 
   output.write();
   
