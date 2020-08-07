@@ -2,6 +2,8 @@ class TLC59711_chain {
 
     // number of registers in the chain
     int chain_len;
+    
+    int b; //shift register byte
 
     // create an array of TLC59711 objects
     ArrayList<TLC59711> chain_link = new ArrayList<TLC59711>();
@@ -32,6 +34,7 @@ class TLC59711_chain {
                 //spi.transfer(byte(chain_link[c]));
             }
         }
-    }
+        spi.transfer(byte(b));
+  }
 
 }
